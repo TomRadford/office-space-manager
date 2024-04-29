@@ -7,9 +7,9 @@ html {
 }
 
 h2 {
-  @apply text-xl font-semibold;
+  @apply text-[28px] font-semibold;
 }
 
 h3 {
-  @apply text-base font-extrabold;
+  @apply text-xl font-extrabold;
 }
