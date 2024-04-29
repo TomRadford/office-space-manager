@@ -43,7 +43,7 @@ const PeopleIcon = () => (
     />
     <path
       d="M14.91 18.6372C13.32 17.5772 10.69 17.5772 9.08997 18.6372C7.67997 19.5772 7.67997 21.1172 9.08997 22.0572C10.69 23.1272 13.31 23.1272 14.91 22.0572"
-      stroke="#0D4477"
+      stroke="currentColor"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
