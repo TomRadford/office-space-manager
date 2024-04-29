@@ -18,10 +18,10 @@ model Office {
   phone        String
   capacity     Int
   color        String
+  maximumCapacity Int
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   staffMembers StaffMember[]
-
   @@index([name])
 }
 
