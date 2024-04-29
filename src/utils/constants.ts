@@ -17,7 +17,7 @@ export const OFFICE_COLOURS = [
   "#00B402",
   "#489DDA",
   "#0072E8",
-  "8338EC",
+  "#8338EC",
 ];
 /**
  * @constant
