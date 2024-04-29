@@ -11,8 +11,10 @@ const inter = Inter({
 });
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <main className={`font-sans ${inter.variable} bg-background mx-4`}>
-      <Component {...pageProps} />
+    <main className={`font-sans ${inter.variable} min-h-screen bg-background`}>
+      <div className="mx-4">
+        <Component {...pageProps} />
+      </div>
     </main>
   );
 };
