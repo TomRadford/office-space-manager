@@ -10,7 +10,6 @@ import Skeleton from "@/components/common/Skeleton";
 export default function OfficeListPage() {
   const getAllOffices = api.office.getAll.useQuery();
 
-  console.log(getAllOffices.data);
   return (
     <>
       <Head>
