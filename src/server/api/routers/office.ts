@@ -12,6 +12,8 @@ export const officeRouter = createTRPCRouter({
       };
     }),
 
+  // ToDo use protectedProcedure when authentication is implemented
+
   create: publicProcedure
     .input(officeInputSchema)
     .mutation(async ({ ctx, input }) => {
@@ -26,6 +28,20 @@ export const officeRouter = createTRPCRouter({
       include: { _count: { select: { staffMembers: true } } },
     });
   }),
+
+  getOne: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        staff: z.boolean().optional().default(false),
+      }),
+    )
+    .query(({ input, ctx }) => {
+      return ctx.db.office.findUnique({
+        where: { id: input.id },
+        include: { staffMembers: input.staff },
+      });
+    }),
 
   // getLatest: publicProcedure.query(({ ctx }) => {
   //   return ctx.db.post.findFirst({
