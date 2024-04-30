@@ -5,10 +5,12 @@ import { OFFICE_COLOURS, TITLE } from "@/utils/constants";
 import OfficeCard from "@/components/office/card/OfficeCard";
 import type { Office } from "@prisma/client";
 import AddButton from "@/components/common/button/AddButton";
+import Skeleton from "@/components/common/Skeleton";
 
 export default function OfficeListPage() {
-  const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const getAllOffices = api.office.getAll.useQuery();
 
+  console.log(getAllOffices.data);
   return (
     <>
       <Head>
@@ -19,21 +21,18 @@ export default function OfficeListPage() {
         <h2>All offices</h2>
       </header>
       <main className="">
-        <div>
-          <OfficeCard
-            office={
-              {
-                id: 1,
-                name: "Cool Company",
-                phone: "123-456-7890",
-                email: "info@company.com",
-                color: OFFICE_COLOURS[0],
-                address:
-                  "123 Main St, Sea Point, Cape Town, South Africa, 7000",
-              } as Office
-            }
-            staffCount={10}
-          />
+        <div className="mb-24 flex flex-col gap-6">
+          {getAllOffices.isLoading
+            ? new Array(5)
+                .fill(0)
+                .map((_, i) => <Skeleton key={i} className="h-36 w-full" />)
+            : getAllOffices.data?.map((office) => (
+                <OfficeCard
+                  office={office}
+                  staffCount={office._count.staffMembers}
+                  key={office.id}
+                />
+              ))}
         </div>
       </main>
       <AddButton href="/office/new" />

@@ -1,8 +1,12 @@
 import Button from "@/components/common/button/Button";
+import ErrorMessage from "@/components/common/input/ErrorMessage";
 import TextInput from "@/components/common/input/TextInput";
 import ColourSelector from "@/components/office/ColourSelector";
 import { officeInputSchema } from "@/inputSchema/office";
+import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Office } from "@prisma/client";
+import { AnimatePresence } from "framer-motion";
 
 import { Controller, useForm } from "react-hook-form";
 import type z from "zod";
@@ -12,7 +16,7 @@ type OfficeInput = z.infer<typeof officeInputSchema>;
 /**
  * Office edit/add component
  */
-const EditOffice = () => {
+const EditOffice = ({ office }: { office?: Office }) => {
   const {
     register,
     handleSubmit,
@@ -22,8 +26,18 @@ const EditOffice = () => {
     resolver: zodResolver(officeInputSchema),
   });
 
-  const onSubmit = (data: OfficeInput) => {
-    console.log(data);
+  const createOffice = api.office.create.useMutation({
+    onSuccess: (d) => {
+      console.log(d);
+    },
+  });
+
+  const onSubmit = (input: OfficeInput) => {
+    if (office) {
+      //  update
+    } else {
+      createOffice.mutate(input);
+    }
   };
 
   return (
@@ -62,20 +76,32 @@ const EditOffice = () => {
       TODO remove global h* styles from tailwind 
       config and explicitly set them in components.
       */}
-      <h3 className=" mt-41 font-semibold">Office colour</h3>
-      <Controller
-        control={control}
-        name="colour"
-        render={({ field: { onChange, onBlur, value, ref } }) => (
-          <ColourSelector
-            onChange={onChange} // send value to hook form
-            // onBlur={onBlur} // notify when input is touched/blur
-            selected={value}
-          />
-        )}
-      />
+      <div className="relative">
+        <h3 className=" my-6 font-semibold">Office colour</h3>
+
+        <Controller
+          control={control}
+          name="colour"
+          render={({ field: { onChange, onBlur, value, ref } }) => (
+            <ColourSelector
+              onChange={onChange} // send value to hook form
+              // onBlur={onBlur} // notify when input is touched/blur
+              selected={value}
+            />
+          )}
+        />
+        <AnimatePresence>
+          {errors.colour?.message && (
+            <div className="absolute -bottom-6 left-0">
+              <ErrorMessage errorMessage={errors.colour?.message} />
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
       <div className="mt-3">
-        <Button type="submit">Add Office</Button>
+        <Button disabled={createOffice.isPending} type="submit">
+          Add Office
+        </Button>
       </div>
     </form>
   );

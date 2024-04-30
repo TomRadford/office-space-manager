@@ -9,7 +9,7 @@ const AddOfficePage = () => {
       <Head>
         <title>New Office | {TITLE}</title>
       </Head>
-      <Header title="New Office" />
+      <Header href="/" title="New Office" />
       <EditOffice />
     </>
   );
