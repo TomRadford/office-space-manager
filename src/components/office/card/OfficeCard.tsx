@@ -47,9 +47,7 @@ const OfficeCard = ({
           <IconWrapper
             IconComponent={EditIcon}
             className=" text-primary"
-            onClick={() => {
-              console.log("hi");
-            }}
+            href={`/office/${office.id}/edit`}
           />
         </div>
         <ul>
