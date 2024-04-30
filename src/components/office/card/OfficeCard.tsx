@@ -21,23 +21,23 @@ const OfficeCard = ({
   return (
     <div className="relative w-full overflow-hidden rounded-lg border-y-[1px] border-lightBlue bg-white ">
       <div
-        className="colourBar absolute bottom-0 top-0 w-3 bg-no-repeat"
+        className="colour-bar absolute bottom-0 top-0 w-3 bg-no-repeat"
         // We cant use tailwind here since we need to set the
-        // color dynamically based on the hex value
+        // colour dynamically based on the hex value
         // of the office colour using styled-jsx
       />
       <style jsx>{`
-        .colourBar {
+        .colour-bar {
           background: linear-gradient(
             to bottom,
-            ${convertHexToRGBA(office.color, 1)} 0%,
-            ${convertHexToRGBA(office.color, 1)} 25%,
-            ${convertHexToRGBA(office.color, 0.9)} 25%,
-            ${convertHexToRGBA(office.color, 0.9)} 50%,
-            ${convertHexToRGBA(office.color, 0.8)} 50%,
-            ${convertHexToRGBA(office.color, 0.8)} 75%,
-            ${convertHexToRGBA(office.color, 0.7)} 75%,
-            ${convertHexToRGBA(office.color, 0.7)} 100%
+            ${convertHexToRGBA(office.colour, 1)} 0%,
+            ${convertHexToRGBA(office.colour, 1)} 25%,
+            ${convertHexToRGBA(office.colour, 0.9)} 25%,
+            ${convertHexToRGBA(office.colour, 0.9)} 50%,
+            ${convertHexToRGBA(office.colour, 0.8)} 50%,
+            ${convertHexToRGBA(office.colour, 0.8)} 75%,
+            ${convertHexToRGBA(office.colour, 0.7)} 75%,
+            ${convertHexToRGBA(office.colour, 0.7)} 100%
           );
         }
       `}</style>
@@ -69,6 +69,7 @@ const OfficeCard = ({
             <IconWrapper IconComponent={ArrowDownIcon} />
           </div>
         </button>
+
         {showInfo && (
           <motion.ul
             initial={{ opacity: 0, y: -10 }}
