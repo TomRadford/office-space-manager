@@ -9,4 +9,5 @@ export const officeInputSchema = z.object({
   email: z.string().email(),
   phone: z.string().min(10),
   maximumCapacity: z.number(),
+  color: z.string(),
 });
