@@ -26,6 +26,8 @@ const EditOffice = ({ office }: { office?: Office }) => {
     resolver: zodResolver(officeInputSchema),
   });
 
+  // HERE: IMPLEMENT EDIT UI
+
   const createOffice = api.office.create.useMutation({
     onSuccess: (d) => {
       console.log(d);
