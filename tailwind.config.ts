@@ -14,6 +14,7 @@ export default {
       lightBlue: "#E8F3FC",
       dark: "#292D32",
       red: "#F44336",
+      selected: "#475569",
       // Office colours are defined in the `OFFICE_COLOURS` constant
     },
     // Keeping tailwind defaults (sans colours) for convenience
