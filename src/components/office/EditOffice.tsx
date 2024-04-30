@@ -5,7 +5,7 @@ import ColourSelector from "@/components/office/ColourSelector";
 import { officeInputSchema } from "@/inputSchema/office";
 import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Office } from "@prisma/client";
+import type { Office } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
 
 import { Controller, useForm } from "react-hook-form";
