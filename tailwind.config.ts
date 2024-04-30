@@ -1,6 +1,6 @@
 import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
-import colors from "tailwindcss/colors";
+import colors, { red } from "tailwindcss/colors";
 export default {
   content: ["./src/**/*.tsx"],
   theme: {
@@ -13,6 +13,7 @@ export default {
       gray: "#484954",
       lightBlue: "#E8F3FC",
       dark: "#292D32",
+      red: red,
       // Office colours are defined in the `OFFICE_COLOURS` constant
     },
     // Keeping tailwind defaults (sans colours) for convenience
