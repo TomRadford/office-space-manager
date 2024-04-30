@@ -16,7 +16,6 @@ model Office {
   address      String
   email        String
   phone        String
-  capacity     Int
   colour        String
   maximumCapacity Int
   createdAt    DateTime      @default(now())
