@@ -39,7 +39,7 @@ I used:
 
 This project was bootstrapped with `create-t3-app` from the [T3 Stack](https://create.t3.gg/) so I could hit the ground running.
 
-## ToDo
+## Todo list 📝
 
 Some nice to haves that could extend the application (and its usefulness) in the future:
 
