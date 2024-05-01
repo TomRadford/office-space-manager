@@ -19,6 +19,8 @@ Check out the live demo deployed at [awesomeoffices.tomradford.co.za](https://aw
 
 ## Deployment
 
+When running `pnpm build`, you might run into `Error occurred prerendering page` errors, to fix ensure that `NODE_ENV=production` - ie `NODE_ENV=production pnpm build`- more [here](https://github.com/vercel/next.js/issues/56481)
+
 To deploy can follow deployment guides like one on [Docker](https://create.t3.gg/en/deployment/docker) for more information. Sadly, services that utilise serverless functions like Cloudflare workers/pages and Vercel wont work without some R&D due to the SQLite requirement (because you need a persistent file system in a regular Node environment)
 
 ## Tech Stack
