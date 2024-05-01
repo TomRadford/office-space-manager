@@ -2,6 +2,10 @@
 
 A simple fun little CRUD app to manage offices and their staff members 🤓
 
+## [Live Demo](awesomeoffices.tomradford.co.za)
+
+Check out the live demo deployed at [awesomeoffices.tomradford.co.za](https://awesomeoffices.tomradford.co.za/) 🚀
+
 ## Local Development
 
 - cd your terminal into this directory
@@ -15,7 +19,7 @@ A simple fun little CRUD app to manage offices and their staff members 🤓
 
 ## Deployment
 
-You can also deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+To deploy can follow deployment guides like one on [Docker](https://create.t3.gg/en/deployment/docker) for more information. Sadly, services that utilise serverless functions like Cloudflare workers/pages and Vercel wont work without some R&D due to the SQLite requirement (because you need a persistent file system in a regular Node environment)
 
 ## Tech Stack
 
