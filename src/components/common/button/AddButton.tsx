@@ -12,7 +12,7 @@ const AddButton = ({
   href,
 }: {
   onClick?: () => void;
-  href: string;
+  href?: string;
 }) => {
   if (onClick)
     return (
