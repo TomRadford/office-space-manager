@@ -15,7 +15,7 @@ const StaffMemberList = ({
       ? true
       : // The array here specifies the keys we want to search by
         [field.firstName, field.lastName, field.id].some((v) =>
-          v?.toString().toLowerCase().includes(search),
+          v?.toString().toLowerCase().includes(search.toLowerCase()),
         ),
   );
 
