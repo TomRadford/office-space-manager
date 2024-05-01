@@ -1,29 +1,36 @@
-# Create T3 App
+# Awesome Office Space Manager 🏢 ✨
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A simple fun little CRUD app to manage offices and their staff members 🤓
 
-## What's next? How do I make an app with this?
+## Local Development
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- cd your terminal into this directory
+- Install Node 20 (if you use nvm, you can do `nvm use`)
+- Install pnpm `corepack enable pnpm` or check out [this](https://pnpm.io/installation) for help
+- Copy `.env.example` to `.env`
+- run `pnpm db:push` to init the db (you'll see a new `prisma/db.sqlite` appear)
+- run `pnpm dev`
+- the app should be up at `http://localhost:3000/`
+- have fun! 🧑‍🍳
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Deployment
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+You can also deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
 
-## Learn More
+## Tech Stack
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+I used:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- React (old faithful)
+- TypeScript (essential)
+- NextJS (pages router) - as awesome as the Next app router looks, I wanted to focus on building instead of wrapping my head around the new paradigm of Server Components and Actions. Definitely on my todo list though!
+- Tailwind to implement designs at the speed of light
+- TRPC for automatic query client type-gen awesomeness
+- Prisma for a nice simple ORM
+- SQLite for a lovely file-based db (no need to spin up a db... woohoo!)
+- Zod for validation on both forms and trpc procedures
+- React Form Hook for form state management and validation (its awesome)
+- Radix's headless Dialog component for a semantic modal with build-in portalling.
+- Ebay's Nice Modal for rendering modals (I love being able to call a modal as a function... instead of wrapping modals in conditionals in the markup)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+This project was bootstrapped with `create-t3-app` from the [T3 Stack](https://create.t3.gg/) so I could hit the ground running.
