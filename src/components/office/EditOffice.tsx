@@ -72,6 +72,9 @@ const EditOffice = ({ office }: { office?: Office }) => {
   const deleteOffice = api.office.delete.useMutation({
     onSuccess: async () => {
       if (office) {
+        // ToDo use queryClient.remove here with fuzzy matching on params
+        utils.office.getOne.setData({ id: office.id, staff: true }, undefined);
+        utils.office.getOne.setData({ id: office.id, staff: false }, undefined);
         utils.office.getAll.setData(undefined, (oldData) =>
           oldData?.filter((o) => o.id !== office.id),
         );
