@@ -12,7 +12,6 @@ import { useAppModal } from "@/utils/hooks/modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { StaffMember } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import type { z } from "zod";
@@ -32,7 +31,7 @@ const EditStaffMember = ({
     control,
     trigger,
     clearErrors,
-    formState: { errors, touchedFields },
+    formState: { errors },
   } = useForm<StaffMemberInput>({
     resolver: zodResolver(staffMemberInputSchema),
   });
