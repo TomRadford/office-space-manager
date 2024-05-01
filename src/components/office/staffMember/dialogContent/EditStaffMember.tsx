@@ -12,7 +12,7 @@ import { useAppModal } from "@/utils/hooks/modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { StaffMember } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { type MouseEvent, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import type { z } from "zod";
 
@@ -34,6 +34,10 @@ const EditStaffMember = ({
     formState: { errors },
   } = useForm<StaffMemberInput>({
     resolver: zodResolver(staffMemberInputSchema),
+    mode: "onChange",
+    defaultValues: staffMember
+      ? { ...staffMember, officeId: staffMember.officeId ?? undefined }
+      : undefined,
   });
 
   const [page, setPage] = useState<1 | 2>(1);
@@ -53,15 +57,30 @@ const EditStaffMember = ({
     },
   });
 
+  const editStaffMember = api.staffMember.update.useMutation({
+    onSuccess: (d) => {
+      utils.office.getOne.setData({ id: officeId, staff: true }, (oldData) => {
+        return {
+          ...oldData,
+          staffMembers: oldData?.staffMembers.map((s) =>
+            s.id === d.id ? d : s,
+          ),
+        };
+      });
+      modal.remove();
+    },
+  });
+
   const onSubmit = (input: StaffMemberInput) => {
     if (staffMember) {
-      //update
+      editStaffMember.mutate(input);
     } else {
       createStaffMember.mutate({ ...input, officeId });
     }
   };
 
-  const handleNext = async () => {
+  const handleNext = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (await trigger(["firstName", "lastName"])) {
       setPage(2);
       clearErrors("avatarUri");
@@ -118,9 +137,14 @@ const EditStaffMember = ({
           <PageIndicator currentPage={page} totalPages={2} />
         </div>
         {page === 1 ? (
-          <Button onClick={handleNext}>Next</Button>
+          <Button type="button" onClick={handleNext}>
+            Next
+          </Button>
         ) : (
-          <Button type="submit" disabled={createStaffMember.isPending}>
+          <Button
+            type="submit"
+            disabled={createStaffMember.isPending || editStaffMember.isPending}
+          >
             {staffMember ? "Update" : "Add"} Staff Member
           </Button>
         )}

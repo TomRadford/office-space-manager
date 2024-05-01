@@ -1,5 +1,5 @@
 import { cn } from "@/utils/classname";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react";
 
 const buttonStyles = {
   regular: "bg-secondary",
@@ -14,7 +14,7 @@ const Button = ({
   type = "button",
   disabled = false,
 }: {
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   variant?: keyof typeof buttonStyles;
   children: ReactNode;
   disabled?: boolean;
