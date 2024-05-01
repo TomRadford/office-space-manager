@@ -5,7 +5,7 @@ A simple fun little CRUD app to manage offices and their staff members 🤓
 ## Local Development
 
 - cd your terminal into this directory
-- Install Node 20 (if you use nvm, you can do `nvm use`)
+- Install Node 20 (if you use nvm, you can do `nvm install` / `nvm use`)
 - Install pnpm `corepack enable pnpm` or check out [this](https://pnpm.io/installation) for help
 - Copy `.env.example` to `.env`
 - run `pnpm db:push` to init the db (you'll see a new `prisma/db.sqlite` appear)
