@@ -82,7 +82,7 @@ const OfficeCard = ({
               phone={office.phone}
               email={office.email}
               address={office.address}
-              staffCount={staffCount.toString()}
+              capacity={office.maximumCapacity.toString()}
             />
           </motion.ul>
         )}

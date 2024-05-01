@@ -7,15 +7,13 @@ import PhoneIcon from "@/components/common/icons/PhoneIcon";
 const CardDetails = ({
   phone,
   email,
-  staffCount,
+  capacity,
   address,
-}: Record<"phone" | "email" | "staffCount" | "address", string>) => (
+}: Record<"phone" | "email" | "capacity" | "address", string>) => (
   <>
     <CardItem IconComponent={PhoneIcon}>{phone}</CardItem>
     <CardItem IconComponent={EmailIcon}>{email}</CardItem>
-    <CardItem IconComponent={PeopleIcon}>
-      Office Capacity: {staffCount}
-    </CardItem>
+    <CardItem IconComponent={PeopleIcon}>Office Capacity: {capacity}</CardItem>
     <CardItem IconComponent={LocationIcon}>{address}</CardItem>
   </>
 );
