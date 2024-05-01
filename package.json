@@ -10,7 +10,7 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
-    "start": "next start -p 8082"
+    "start": "next start -p 4002"
   },
   "dependencies": {
     "@ebay/nice-modal-react": "^1.2.13",
