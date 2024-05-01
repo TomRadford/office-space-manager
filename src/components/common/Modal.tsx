@@ -7,6 +7,7 @@ import { useAppModal } from "@/utils/hooks/modal";
 /**
  * Modal wrapper component to be used with our custom `useAppModal` hook.
  *
+ * @see useAppModal documentation for more information on how to use this component.
  *
  */
 const Modal = NiceModal.create(({ content }: { content: ReactNode }) => {
