@@ -19,8 +19,17 @@ export const OFFICE_COLOURS = [
   "#0072E8",
   "#8338EC",
 ];
+
 /**
  * @constant
  * Title for the app
  */
 export const TITLE = "Office Space Manager";
+
+/**
+ * @constant
+ * Staff Member icon URI's (relative)
+ */
+export const STAFF_MEMBER_ICONS = new Array(7)
+  .fill(0)
+  .map((_, i) => `/icons/staff/${i + 1}.svg`);
