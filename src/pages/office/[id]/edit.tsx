@@ -3,14 +3,19 @@ import Skeleton from "@/components/common/Skeleton";
 import EditOffice from "@/components/office/EditOffice";
 import { api } from "@/utils/api";
 import { TITLE } from "@/utils/constants";
+import { isString } from "@/utils/typeguards";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 const EditOfficePage = () => {
   const router = useRouter();
-  const getOffice = api.office.getOne.useQuery({
-    id: parseInt(router.query.id as string), //ToDo show 404 if office not found
-  });
+  const id = router.query.id;
+  const getOffice = api.office.getOne.useQuery(
+    {
+      id: parseInt(id as string),
+    },
+    { enabled: isString(id) },
+  );
   return (
     <>
       <Head>
