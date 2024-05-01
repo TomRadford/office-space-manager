@@ -30,6 +30,7 @@ const EditOfficePage = () => {
       getOffice.data?.staffMembers.length >= getOffice.data?.maximumCapacity
     ) {
       return modal.show({
+        // ToDo: ask design team for feedback on this dialog
         content: (
           <DialogDescription className="text-center">
             This office has reached its maximum capacity 🫣
