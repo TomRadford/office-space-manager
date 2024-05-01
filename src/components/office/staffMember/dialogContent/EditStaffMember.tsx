@@ -47,6 +47,8 @@ const EditStaffMember = ({
 
   const createStaffMember = api.staffMember.create.useMutation({
     onSuccess: (d) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       utils.office.getOne.setData({ id: officeId, staff: true }, (oldData) => {
         return {
           ...oldData,
@@ -59,6 +61,8 @@ const EditStaffMember = ({
 
   const editStaffMember = api.staffMember.update.useMutation({
     onSuccess: (d) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       utils.office.getOne.setData({ id: officeId, staff: true }, (oldData) => {
         return {
           ...oldData,

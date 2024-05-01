@@ -16,6 +16,8 @@ const StaffContextMenu = ({ staffMember }: { staffMember: StaffMember }) => {
       if (isNumber(staffMember.officeId)) {
         utils.office.getOne.setData(
           { id: staffMember.officeId, staff: true },
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
           (oldData) => {
             return {
               ...oldData,

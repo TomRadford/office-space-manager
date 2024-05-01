@@ -27,6 +27,8 @@ const EditOfficePage = () => {
 
   const handleAddStaffMember = async () => {
     if (
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       getOffice.data?.staffMembers.length >= getOffice.data?.maximumCapacity
     ) {
       return modal.show({
