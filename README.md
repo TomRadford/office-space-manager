@@ -34,3 +34,13 @@ I used:
 - Ebay's Nice Modal for rendering modals (I love being able to call a modal as a function... instead of wrapping modals in conditionals in the markup)
 
 This project was bootstrapped with `create-t3-app` from the [T3 Stack](https://create.t3.gg/) so I could hit the ground running.
+
+## ToDo
+
+Some nice to haves that could extend the application (and its usefulness) in the future:
+
+- Error handling/display
+- Authentication
+- Multi-tenancy (so there can be many companies, each with their own offices and users, running on one instance) using something like DB sharding
+
+Thanks for having a look ✨
