@@ -43,4 +43,10 @@ export const officeRouter = createTRPCRouter({
         data: { ...input, maximumCapacity: parseInt(input.maximumCapacity) },
       });
     }),
+
+  delete: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(({ input, ctx }) => {
+      return ctx.db.office.delete({ where: { id: input.id } });
+    }),
 });
