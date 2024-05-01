@@ -16,10 +16,11 @@ const Modal = NiceModal.create(({ content }: { content: ReactNode }) => {
     <>
       <Dialog.Root open={true}>
         <Dialog.Portal container={document.body}>
-          <Dialog.Overlay className="font-Sans data-[state=open]:animate-overlayShow bg-overlay/50 fixed inset-0" />
+          <Dialog.Overlay className="font-Sans fixed inset-0 bg-overlay/50 data-[state=open]:animate-overlayShow" />
           <Dialog.Content
             onEscapeKeyDown={() => modal.remove()}
-            className={`font-sans ${inter.variable} data-[state=open]:animate-contentShow fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-2xl translate-x-[-50%] translate-y-[-50%] rounded-lg bg-white px-4 py-6  focus:outline-none`}
+            // We need to add the font here since this portals outside of main div in _app.tsx
+            className={`font-sans ${inter.variable} fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-2xl translate-x-[-50%] translate-y-[-50%] rounded-lg bg-background px-4 py-6 focus:outline-none  data-[state=open]:animate-contentShow`}
           >
             {content}
           </Dialog.Content>
