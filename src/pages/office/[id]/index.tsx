@@ -7,6 +7,7 @@ import { api } from "@/utils/api";
 import { TITLE } from "@/utils/constants";
 import { useAppModal } from "@/utils/hooks/modal";
 import { isNumber, isString } from "@/utils/typeguards";
+import { DialogDescription } from "@radix-ui/react-dialog";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -25,6 +26,18 @@ const EditOfficePage = () => {
   );
 
   const handleAddStaffMember = async () => {
+    if (
+      getOffice.data?.staffMembers.length >= getOffice.data?.maximumCapacity
+    ) {
+      return modal.show({
+        content: (
+          <DialogDescription className="text-center">
+            This office has reached its maximum capacity 🫣
+          </DialogDescription>
+        ),
+        closeOnOutsideClick: true,
+      });
+    }
     if (isNumber(getOffice.data?.id)) {
       await modal.show({
         content: <EditStaffMember officeId={getOffice.data?.id} />,
