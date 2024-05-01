@@ -8,6 +8,6 @@ export const staffMemberInputSchema = z.object({
   id: z.number().optional(),
   firstName: z.string().min(2),
   lastName: z.string().min(2),
-  avatarUri: z.string(),
+  avatarUri: z.string({ message: "Please select an avatar image" }),
   officeId: z.number(),
 });
