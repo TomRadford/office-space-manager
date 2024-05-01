@@ -23,7 +23,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           </div>
         </main>
       </NiceModal.Provider>
-      <ReactQueryDevtools />
+      {/* Uncomment below for debugging.
+         Either way, this will always get tree-shaken for build */}
+      {/* <ReactQueryDevtools buttonPosition="bottom-left" /> */}
     </>
   );
 };
