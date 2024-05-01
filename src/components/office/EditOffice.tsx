@@ -2,7 +2,7 @@ import Button from "@/components/common/button/Button";
 import ErrorMessage from "@/components/common/input/ErrorMessage";
 import TextInput from "@/components/common/input/TextInput";
 import ColourSelector from "@/components/office/ColourSelector";
-import DeleteOffice from "@/components/office/dialogContent/DeleteOffice";
+import Delete from "@/components/office/dialogContent/Delete";
 import { officeInputSchema } from "@/inputSchema/office";
 import { api } from "@/utils/api";
 import { useAppModal } from "@/utils/hooks/modal";
@@ -106,7 +106,7 @@ const EditOffice = ({ office }: { office?: Office }) => {
     if (office) {
       await modal.show({
         content: (
-          <DeleteOffice
+          <Delete
             entity="Office"
             handleDelete={async () => {
               await deleteOffice.mutateAsync({ id: office.id });

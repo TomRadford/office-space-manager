@@ -4,7 +4,7 @@ import IconWrapper from "@/components/common/icons/IconWrapper";
 import { useAppModal } from "@/utils/hooks/modal";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 
-const DeleteOffice = ({
+const Delete = ({
   handleDelete,
   entity,
 }: {
@@ -40,4 +40,4 @@ const DeleteOffice = ({
   );
 };
 
-export default DeleteOffice;
+export default Delete;
