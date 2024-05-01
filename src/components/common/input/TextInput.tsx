@@ -12,12 +12,14 @@ const TextInput = forwardRef<
 >((props, ref) => {
   const elementProps = { ...props };
   delete elementProps.errorMessage;
+  delete elementProps.className;
   return (
     <div className="relative">
       <input
         className={cn(
-          "w-full border-0 placeholder:opacity-50 focus:ring-secondary",
+          "h-12 w-full rounded-lg border-0 placeholder:opacity-50 focus:ring-secondary",
           { "ring-1 ring-red focus:ring-red": props.errorMessage },
+          props.className,
         )}
         {...elementProps}
         ref={ref}
