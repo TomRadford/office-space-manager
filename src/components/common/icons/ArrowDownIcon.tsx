@@ -9,7 +9,7 @@ const ArrowDownIcon = () => {
     >
       <path
         d="M19.9201 9.46045L13.4001 16.1321C12.6301 16.92 11.3701 16.92 10.6001 16.1321L4.08008 9.46045"
-        stroke="#0D4477"
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeMiterlimit="10"
         strokeLinecap="round"
