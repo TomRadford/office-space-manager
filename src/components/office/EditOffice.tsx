@@ -7,6 +7,7 @@ import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Office } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 import { Controller, useForm } from "react-hook-form";
 import type z from "zod";
@@ -24,19 +25,50 @@ const EditOffice = ({ office }: { office?: Office }) => {
     formState: { errors },
   } = useForm<OfficeInput>({
     resolver: zodResolver(officeInputSchema),
+    defaultValues: office
+      ? { ...office, maximumCapacity: office.maximumCapacity.toString() }
+      : undefined,
   });
 
-  // HERE: IMPLEMENT EDIT UI
+  const utils = api.useUtils();
+  const router = useRouter();
 
   const createOffice = api.office.create.useMutation({
-    onSuccess: (d) => {
-      console.log(d);
+    onSuccess: (newOffice) => {
+      utils.office.getAll.setData(undefined, (oldData) => [
+        ...(oldData ?? []),
+        { ...newOffice, _count: { staffMembers: 0 } },
+      ]);
+      router.back();
+    },
+  });
+
+  const updateOffice = api.office.update.useMutation({
+    // Update query cache with the response for instant feedback
+    // on a slow connection. This prevents showing stale data during
+    // invalidation (ie: when the query is being updated in the background)
+    onSuccess: (updatedOffice) => {
+      utils.office.getOne.setData({ id: updatedOffice.id }, (oldData) => ({
+        ...updatedOffice,
+        // Since we dont mutate staff members, we'll keep the old data
+        staffMembers: oldData?.staffMembers ?? [],
+      }));
+      // If we ever implement pagination, we'll need to check if the data exists first
+      utils.office.getAll.setData(undefined, (oldData) =>
+        oldData?.map((o) => {
+          if (o.id === updatedOffice.id) {
+            return { ...updatedOffice, _count: o._count };
+          }
+          return o;
+        }),
+      );
+      router.back();
     },
   });
 
   const onSubmit = (input: OfficeInput) => {
     if (office) {
-      //  update
+      updateOffice.mutate(input);
     } else {
       createOffice.mutate(input);
     }
@@ -100,10 +132,14 @@ const EditOffice = ({ office }: { office?: Office }) => {
           )}
         </AnimatePresence>
       </div>
-      <div className="mt-3">
-        <Button disabled={createOffice.isPending} type="submit">
-          Add Office
+      <div className="mt-3 flex flex-col gap-4">
+        <Button
+          disabled={createOffice.isPending || updateOffice.isPending}
+          type="submit"
+        >
+          {office ? "Update" : "Add"} Office
         </Button>
+        {office && <Button variant="ghost">Delete Office</Button>}
       </div>
     </form>
   );
