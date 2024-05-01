@@ -51,11 +51,22 @@ const EditOffice = ({ office }: { office?: Office }) => {
     // on a slow connection. This prevents showing stale data during
     // invalidation (ie: when the query is being updated in the background)
     onSuccess: (updatedOffice) => {
-      utils.office.getOne.setData({ id: updatedOffice.id }, (oldData) => ({
-        ...updatedOffice,
-        // Since we dont mutate staff members, we'll keep the old data
-        staffMembers: oldData?.staffMembers ?? [],
-      }));
+      utils.office.getOne.setData(
+        { id: updatedOffice.id, staff: undefined },
+        (oldData) => ({
+          ...updatedOffice,
+          // Since we dont mutate staff members, we'll keep the old data
+          staffMembers: oldData?.staffMembers ?? [],
+        }),
+      );
+      utils.office.getOne.setData(
+        { id: updatedOffice.id, staff: true },
+        (oldData) => ({
+          ...updatedOffice,
+          // Since we dont mutate staff members, we'll keep the old data
+          staffMembers: oldData?.staffMembers ?? [],
+        }),
+      );
       // If we ever implement pagination, we'll need to check if the data exists first
       utils.office.getAll.setData(undefined, (oldData) =>
         oldData?.map((o) => {
