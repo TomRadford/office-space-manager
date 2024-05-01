@@ -14,35 +14,14 @@ export const staffMemberRouter = createTRPCRouter({
       });
     }),
 
-  //   getOne: publicProcedure
-  //     .input(
-  //       z.object({
-  //         id: z.number(),
-  //         staff: z.boolean().optional().default(false),
-  //       }),
-  //     )
-  //     .query(({ input, ctx }) => {
-  //       return ctx.db.office.findUnique({
-  //         where: { id: input.id },
-  //         include: { staffMembers: input.staff },
-  //       });
-  //     }),
-
-  //   getAll: publicProcedure.query(({ ctx }) => {
-  //     // return count of each office's staff
-  //     return ctx.db.office.findMany({
-  //       include: { _count: { select: { staffMembers: true } } },
-  //     });
-  //   }),
-
-  //   update: publicProcedure
-  //     .input(staffMemberInputSchema)
-  //     .mutation(({ input, ctx }) => {
-  //       return ctx.db.office.update({
-  //         where: { id: input.id },
-  //         data: { ...input, maximumCapacity: parseInt(input.maximumCapacity) },
-  //       });
-  //     }),
+  update: publicProcedure
+    .input(staffMemberInputSchema)
+    .mutation(({ input, ctx }) => {
+      return ctx.db.staffMember.update({
+        where: { id: input.id },
+        data: input,
+      });
+    }),
 
   delete: publicProcedure
     .input(z.object({ id: z.number() }))
