@@ -2,8 +2,10 @@ import Button from "@/components/common/button/Button";
 import ErrorMessage from "@/components/common/input/ErrorMessage";
 import TextInput from "@/components/common/input/TextInput";
 import ColourSelector from "@/components/office/ColourSelector";
+import DeleteOffice from "@/components/dialogContent/DeleteOffice";
 import { officeInputSchema } from "@/inputSchema/office";
 import { api } from "@/utils/api";
+import { useAppModal } from "@/utils/hooks/modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Office } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
@@ -32,6 +34,7 @@ const EditOffice = ({ office }: { office?: Office }) => {
 
   const utils = api.useUtils();
   const router = useRouter();
+  const modal = useAppModal();
 
   const createOffice = api.office.create.useMutation({
     onSuccess: (newOffice) => {
@@ -66,11 +69,37 @@ const EditOffice = ({ office }: { office?: Office }) => {
     },
   });
 
+  const deleteOffice = api.office.delete.useMutation({
+    onSuccess: async () => {
+      if (office) {
+        utils.office.getAll.setData(undefined, (oldData) =>
+          oldData?.filter((o) => o.id !== office.id),
+        );
+      }
+      await router.push("/");
+    },
+  });
+
   const onSubmit = (input: OfficeInput) => {
     if (office) {
       updateOffice.mutate(input);
     } else {
       createOffice.mutate(input);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (office) {
+      await modal.show({
+        content: (
+          <DeleteOffice
+            entity="Office"
+            handleDelete={async () => {
+              await deleteOffice.mutateAsync({ id: office.id });
+            }}
+          />
+        ),
+      });
     }
   };
 
@@ -139,7 +168,11 @@ const EditOffice = ({ office }: { office?: Office }) => {
         >
           {office ? "Update" : "Add"} Office
         </Button>
-        {office && <Button variant="ghost">Delete Office</Button>}
+        {office && (
+          <Button variant="ghost" onClick={handleDelete}>
+            Delete Office
+          </Button>
+        )}
       </div>
     </form>
   );
