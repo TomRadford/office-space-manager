@@ -28,8 +28,8 @@ export const TITLE = "Office Space Manager";
 
 /**
  * @constant
- * Staff Member icon URI's (relative)
+ * Staff Member avatar URI's (relative)
  */
-export const STAFF_MEMBER_ICONS = new Array(7)
+export const STAFF_MEMBER_AVATARS = new Array(7)
   .fill(0)
-  .map((_, i) => `/icons/staff/${i + 1}.svg`);
+  .map((_, i) => `/avatars/staff/${i + 1}.svg`);
