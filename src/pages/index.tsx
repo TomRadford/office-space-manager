@@ -1,9 +1,8 @@
 import Head from "next/head";
 
 import { api } from "@/utils/api";
-import { OFFICE_COLOURS, TITLE } from "@/utils/constants";
+import { TITLE } from "@/utils/constants";
 import OfficeCard from "@/components/office/card/OfficeCard";
-import type { Office } from "@prisma/client";
 import AddButton from "@/components/common/button/AddButton";
 import Skeleton from "@/components/common/Skeleton";
 

@@ -159,12 +159,8 @@ const EditOffice = ({ office }: { office?: Office }) => {
         <Controller
           control={control}
           name="colour"
-          render={({ field: { onChange, onBlur, value, ref } }) => (
-            <ColourSelector
-              onChange={onChange} // send value to hook form
-              // onBlur={onBlur} // notify when input is touched/blur
-              selected={value}
-            />
+          render={({ field: { onChange, value } }) => (
+            <ColourSelector onChange={onChange} selected={value} />
           )}
         />
         <AnimatePresence>

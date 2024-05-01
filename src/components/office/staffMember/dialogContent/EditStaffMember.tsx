@@ -120,12 +120,8 @@ const EditStaffMember = ({
             <Controller
               control={control}
               name="avatarUri"
-              render={({ field: { onChange, onBlur, value, ref } }) => (
-                <AvatarSelector
-                  onChange={onChange} // send value to hook form
-                  // onBlur={onBlur} // notify when input is touched/blur
-                  selected={value}
-                />
+              render={({ field: { onChange, value } }) => (
+                <AvatarSelector onChange={onChange} selected={value} />
               )}
             />
             <AnimatePresence>
