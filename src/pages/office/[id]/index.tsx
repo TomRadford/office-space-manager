@@ -6,7 +6,7 @@ import EditStaffMember from "@/components/office/staffMember/dialogContent/EditS
 import { api } from "@/utils/api";
 import { TITLE } from "@/utils/constants";
 import { useAppModal } from "@/utils/hooks/modal";
-import { isString } from "@/utils/typeguards";
+import { isNumber, isString } from "@/utils/typeguards";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -25,7 +25,11 @@ const EditOfficePage = () => {
   );
 
   const handleAddStaffMember = async () => {
-    await modal.show({ content: <EditStaffMember /> });
+    if (isNumber(getOffice.data?.id)) {
+      await modal.show({
+        content: <EditStaffMember officeId={getOffice.data?.id} />,
+      });
+    }
   };
 
   return (
