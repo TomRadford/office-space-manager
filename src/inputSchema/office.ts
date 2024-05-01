@@ -4,6 +4,8 @@ import { z } from "zod";
  * Schema for office input validation
  */
 export const officeInputSchema = z.object({
+  /** Not needed for new office */
+  id: z.number().optional(),
   name: z.string().min(3),
   address: z
     .string()
