@@ -9,6 +9,7 @@ import { convertHexToRGBA } from "@/utils/hexToRGBA";
 import type { Office } from "@prisma/client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const OfficeCard = ({
   office,
@@ -43,7 +44,9 @@ const OfficeCard = ({
       `}</style>
       <div className="flex flex-col gap-4 py-4 pl-8 pr-4">
         <div className="flex w-full justify-between ">
-          <h3>{office.name}</h3>
+          <Link href={`/office/${office.id}`}>
+            <h3>{office.name}</h3>
+          </Link>
           <IconWrapper
             IconComponent={EditIcon}
             className=" text-primary"
