@@ -7,18 +7,25 @@ import ErrorMessage from "@/components/common/input/ErrorMessage";
 import TextInput from "@/components/common/input/TextInput";
 import AvatarSelector from "@/components/office/staffMember/AvatarSelector";
 import { staffMemberInputSchema } from "@/inputSchema/staffMember";
+import { api } from "@/utils/api";
 import { useAppModal } from "@/utils/hooks/modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { StaffMember } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import type { z } from "zod";
 
 type StaffMemberInput = z.infer<typeof staffMemberInputSchema>;
 
-const EditStaffMember = ({ staffMember }: { staffMember?: StaffMember }) => {
-  const modal = useAppModal();
+const EditStaffMember = ({
+  staffMember,
+  officeId,
+}: {
+  staffMember?: StaffMember;
+  officeId: number;
+}) => {
   const {
     register,
     handleSubmit,
@@ -29,9 +36,31 @@ const EditStaffMember = ({ staffMember }: { staffMember?: StaffMember }) => {
   } = useForm<StaffMemberInput>({
     resolver: zodResolver(staffMemberInputSchema),
   });
+
   const [page, setPage] = useState<1 | 2>(1);
 
-  const onSubmit = (input: StaffMemberInput) => {};
+  const utils = api.useUtils();
+  const modal = useAppModal();
+
+  const createStaffMember = api.staffMember.create.useMutation({
+    onSuccess: (d) => {
+      utils.office.getOne.setData({ id: officeId, staff: true }, (oldData) => {
+        return {
+          ...oldData,
+          staffMembers: [...(oldData?.staffMembers ?? []), d],
+        };
+      });
+      modal.remove();
+    },
+  });
+
+  const onSubmit = (input: StaffMemberInput) => {
+    if (staffMember) {
+      //update
+    } else {
+      createStaffMember.mutate({ ...input, officeId });
+    }
+  };
 
   const handleNext = async () => {
     if (await trigger(["firstName", "lastName"])) {
@@ -65,7 +94,7 @@ const EditStaffMember = ({ staffMember }: { staffMember?: StaffMember }) => {
           </>
         ) : (
           <div className="relative">
-            <h3 className="font-semibold">Avatar</h3>
+            <h3 className="mb-6 font-semibold">Avatar</h3>
             <Controller
               control={control}
               name="avatarUri"
@@ -79,7 +108,7 @@ const EditStaffMember = ({ staffMember }: { staffMember?: StaffMember }) => {
             />
             <AnimatePresence>
               {errors.avatarUri?.message && (
-                <div className="absolute -bottom-6 left-0">
+                <div className="absolute -bottom-5 left-0">
                   <ErrorMessage errorMessage={errors.avatarUri?.message} />
                 </div>
               )}
@@ -92,7 +121,7 @@ const EditStaffMember = ({ staffMember }: { staffMember?: StaffMember }) => {
         {page === 1 ? (
           <Button onClick={handleNext}>Next</Button>
         ) : (
-          <Button type="submit">
+          <Button type="submit" disabled={createStaffMember.isPending}>
             {staffMember ? "Update" : "Add"} Staff Member
           </Button>
         )}
