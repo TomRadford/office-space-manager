@@ -1,8 +1,11 @@
 import Header from "@/components/common/Header";
 import Skeleton from "@/components/common/Skeleton";
+import AddButton from "@/components/common/button/AddButton";
 import DisplayOffice from "@/components/office/DisplayOffice";
+import EditStaffMember from "@/components/office/staffMember/dialogContent/EditStaffMember";
 import { api } from "@/utils/api";
 import { TITLE } from "@/utils/constants";
+import { useAppModal } from "@/utils/hooks/modal";
 import { isString } from "@/utils/typeguards";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -10,6 +13,7 @@ import { useRouter } from "next/router";
 const EditOfficePage = () => {
   const router = useRouter();
   const id = router.query.id;
+  const modal = useAppModal();
   // ToDo: we could optimise these query by using the cache
   // from the getAll query minus the staff members
   const getOffice = api.office.getOne.useQuery(
@@ -19,6 +23,11 @@ const EditOfficePage = () => {
     },
     { enabled: isString(id) },
   );
+
+  const handleAddStaffMember = async () => {
+    await modal.show({ content: <EditStaffMember /> });
+  };
+
   return (
     <>
       <Head>
@@ -39,6 +48,7 @@ const EditOfficePage = () => {
       ) : (
         <h1>No office found</h1>
       )}
+      <AddButton onClick={handleAddStaffMember} />
     </>
   );
 };
