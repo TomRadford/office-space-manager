@@ -46,7 +46,8 @@ export const officeRouter = createTRPCRouter({
 
   delete: publicProcedure
     .input(z.object({ id: z.number() }))
-    .mutation(({ input, ctx }) => {
-      return ctx.db.office.delete({ where: { id: input.id } });
+    .mutation(async ({ input, ctx }) => {
+      await ctx.db.staffMember.deleteMany({ where: { officeId: input.id } });
+      await ctx.db.office.delete({ where: { id: input.id } });
     }),
 });
