@@ -42,7 +42,7 @@ const OfficeCard = ({
           );
         }
       `}</style>
-      <div className="flex flex-col gap-4 py-4 pl-8 pr-4">
+      <div className="flex flex-col gap-4 pb-7 pl-8 pr-4 pt-4">
         <div className="flex w-full justify-between ">
           <Link href={`/office/${office.id}`}>
             <h3>{office.name}</h3>
