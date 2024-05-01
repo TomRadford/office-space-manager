@@ -4,15 +4,7 @@ import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { officeInputSchema } from "@/inputSchema/office";
 
 export const officeRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
-
-  // ToDo use protectedProcedure when authentication is implemented
+  // ToDo use protectedProcedure if we ever implemented authentication
 
   create: publicProcedure
     .input(officeInputSchema)
@@ -21,13 +13,6 @@ export const officeRouter = createTRPCRouter({
         data: { ...input, maximumCapacity: parseInt(input.maximumCapacity) },
       });
     }),
-
-  getAll: publicProcedure.query(({ ctx }) => {
-    // return count of each office's staff
-    return ctx.db.office.findMany({
-      include: { _count: { select: { staffMembers: true } } },
-    });
-  }),
 
   getOne: publicProcedure
     .input(
@@ -43,9 +28,19 @@ export const officeRouter = createTRPCRouter({
       });
     }),
 
-  // getLatest: publicProcedure.query(({ ctx }) => {
-  //   return ctx.db.post.findFirst({
-  //     orderBy: { createdAt: "desc" },
-  //   });
-  // }),
+  getAll: publicProcedure.query(({ ctx }) => {
+    // return count of each office's staff
+    return ctx.db.office.findMany({
+      include: { _count: { select: { staffMembers: true } } },
+    });
+  }),
+
+  update: publicProcedure
+    .input(officeInputSchema)
+    .mutation(({ input, ctx }) => {
+      return ctx.db.office.update({
+        where: { id: input.id },
+        data: { ...input, maximumCapacity: parseInt(input.maximumCapacity) },
+      });
+    }),
 });
