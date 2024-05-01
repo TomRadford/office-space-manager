@@ -25,7 +25,7 @@ const StaffMemberList = ({
       <SearchInput onSearch={(s) => setSearch(s)} search={search} />
       <div className="mt-6 flex items-center justify-between">
         <h3 className="font-semibold">Staff Members in Office</h3>
-        <p className=" text-lg font-normal">{staffMembers.length}</p>
+        <p className=" pr-2 text-lg font-normal">{staffMembers.length}</p>
       </div>
       <div className="mb-24 mt-6 flex flex-col gap-4">
         {filteredStaffMembers.map((staffMember) => (
