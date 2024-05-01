@@ -32,6 +32,9 @@ export default function OfficeListPage() {
                   key={office.id}
                 />
               ))}
+          {getAllOffices.data?.length === 0 && (
+            <p>No offices yet, add one below!</p>
+          )}
         </div>
       </main>
       <AddButton href="/office/new" />
