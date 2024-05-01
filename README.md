@@ -48,5 +48,7 @@ Some nice to haves that could extend the application (and its usefulness) in the
 - Error handling/display
 - Authentication
 - Multi-tenancy (so there can be many companies, each with their own offices and users, running on one instance) using something like DB sharding
+- Make skeleton loaders match the UI more accurately
+- Page transitions (either with Framer Motion or View Transitions api)
 
 Thanks for having a look ✨
