@@ -31,7 +31,8 @@ I used:
 - TypeScript (essential)
 - NextJS (pages router) - as awesome as the Next app router looks, I wanted to focus on building instead of wrapping my head around the new paradigm of Server Components and Actions. Definitely on my todo list though!
 - Tailwind to implement designs at the speed of light
-- TRPC for automatic query client type-gen awesomeness
+- TRPC for automatic server/query client type-gen awesomeness
+- TanStack Query (wrapped by TRPC) for syncing server and client state (game changer!)
 - Prisma for a nice simple ORM
 - SQLite for a lovely file-based db (no need to spin up a db... woohoo!)
 - Zod for validation on both forms and trpc procedures
