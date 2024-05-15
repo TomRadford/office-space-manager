@@ -37,8 +37,8 @@ I used:
 - SQLite for a lovely file-based db (no need to spin up a db... woohoo!)
 - Zod for validation on both forms and trpc procedures
 - React Form Hook for form state management and validation (its awesome)
-- Radix's headless Dialog component for a semantic modal with build-in portalling.
-- Ebay's Nice Modal for rendering modals (I love being able to call a modal as a function... instead of wrapping modals in conditionals in the markup)
+- Radix's headless Dialog component for a semantic modal with built-in portalling.
+- Ebay's Nice Modal for rendering modals (I love being able to call a modal as a function... instead of wrapping modals in conditionals in the JXS)
 
 This project was bootstrapped with `create-t3-app` from the [T3 Stack](https://create.t3.gg/) so I could hit the ground running.
 
