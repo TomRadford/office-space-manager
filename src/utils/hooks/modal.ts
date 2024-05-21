@@ -14,6 +14,7 @@ import { useModal as useNiceModal } from "@ebay/nice-modal-react";
  * const openModal = async () => {
  *   await myModal.show(<MyComponent />);
  * }
+ *
  * ```
  *
  *  Content component should use Radix's semantic Dialog components
@@ -27,5 +28,9 @@ import { useModal as useNiceModal } from "@ebay/nice-modal-react";
  *      <Dialog.Description>Description</Dialog.Description>
  *    </>
  * ```
+ *
+ * Note that for nice modal to resolve, you need to call
+ * `modal.resolve('Response data here')` or `modal.reject('Error message goes here')`.
+ *  Following this, you'll probably want to call `modal.remove()` to close the modal.
  */
 export const useAppModal = () => useNiceModal(Modal);
