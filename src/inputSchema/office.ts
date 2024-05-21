@@ -14,6 +14,8 @@ export const officeInputSchema = z.object({
   phone: z.string().min(10, { message: "Phone number must be 10 digits long" }),
   maximumCapacity: z
     .string() // since the number input is a string
-    .min(1, { message: "Maximum capacity should be at least 1" }),
+    .refine((s) => parseInt(s) > 0 && parseInt(s) <= 500, {
+      message: "Capacity must be greater than 0 and less or equal to 500",
+    }),
   colour: z.string(),
 });
