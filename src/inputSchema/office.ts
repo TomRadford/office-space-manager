@@ -16,6 +16,7 @@ export const officeInputSchema = z.object({
     .string() // since the number input is a string
     .refine((s) => parseInt(s) > 0 && parseInt(s) <= 500, {
       message: "Capacity must be greater than 0 and less or equal to 500",
+      // so we dont need bigint for the column type/to keep office capacity reasonable
     }),
   colour: z.string(),
 });
