@@ -23,6 +23,8 @@ When running `pnpm build`, you might run into `Error occurred prerendering page`
 
 To deploy can follow deployment guides like one on [Docker](https://create.t3.gg/en/deployment/docker) for more information. Sadly, services that utilise serverless functions like Cloudflare workers/pages and Vercel wont work without some R&D due to the SQLite requirement (because you need a persistent file system in a regular Node environment)
 
+I have the demo app deployed on a VPS using [Nixpacks](https://nixpacks.com/docs/getting-started) 👏 - nice and old-school 🤓
+
 ## Tech Stack
 
 I used:
