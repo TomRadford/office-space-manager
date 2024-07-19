@@ -2,9 +2,9 @@
 
 A simple fun little CRUD app to manage offices and their staff members 🤓
 
-## [Live Demo](https://awesomeoffices.tomradford.co.za)
+## [Live Demo](https://awesomeoffices.rad.gdn/)
 
-Check out the live demo deployed at [awesomeoffices.tomradford.co.za](https://awesomeoffices.rad.gdn/) 🚀
+Check out the live demo deployed at [awesomeoffices.rad.gdn](https://awesomeoffices.rad.gdn/) 🚀
 
 ## Local Development
 
